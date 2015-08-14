@@ -79,7 +79,10 @@ def main():
     stream.timeout = None
     
     #userstreamの取得.Streamクラスには、本来userstremがあるが、今回はオリジナルのuser_streamを呼びだしている。
-    stream.user_stream()
-    
+    try:
+        stream.user_stream()
+    except KeyboardInterrupt :
+        print("\nexit: KeyboardInterrupt")
+        exit
 if __name__ == "__main__":
     main()
