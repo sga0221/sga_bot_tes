@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+		<script src="/socket.io/socket.io.js"></script>
+		<title>statuses/sample</title>
+	</head>
+	<body>
+		<script>
+		//$はjQueryを意味する。
+		//最初の一行は、ここからjQueryが始まるということを意味している。
+		$(document).ready(function() {
+			var socket = io.connect();
+			
+			socket.on('message', function(data) {
+				//bodyに<p></p>を入れる
+				$('<p>' + data.text + '</p>').prependTo('body');
+				//<p>で100番目の要素を削除する
+				$('p:eq(100)').remove();
+			});
+		});
+		</script>
+	</body>
+</html>
