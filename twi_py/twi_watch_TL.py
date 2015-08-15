@@ -7,7 +7,7 @@ from tweepy import Stream, TweepError
 import logging
 import urllib
 import time
-from sga_auth import CONSUMER_KEY,CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET
+from auth_sga import CONSUMER_KEY,CONSUMER_SECRET,ACCESS_TOKEN,ACCESS_TOKEN_SECRET
 
 #oauth認証
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
