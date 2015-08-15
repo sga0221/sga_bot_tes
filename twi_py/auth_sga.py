@@ -1,8 +1,0 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
-#api,tokenの入力.@sga_bot_tesのものです。
-CONSUMER_KEY= "D6LhetVvjhcjCEQfNFtwyYpyG"
-CONSUMER_SECRET="6L1zJ5tKgq0VFyb9AUQ2tWTaIrnzPA6m006JHOEYpmpG1XRSAR"
-ACCESS_TOKEN="3314842159-YlA9I2c8KbUoYQEREYRsu590T9WpYwTcUj6ZAMj"
-ACCESS_TOKEN_SECRET="xTcc2DKH9l093CjxyQwt4vL1RIMFhqkDVFbUMzbxwvKYi"

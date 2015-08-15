@@ -1,4 +1,6 @@
 ._*
 .DS_*
 __pycache__
-sga_auth.py
+auth_sga.py
+node_modules
+auth_sga.js
