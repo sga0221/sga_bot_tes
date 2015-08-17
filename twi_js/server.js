@@ -22,7 +22,12 @@ var tw = new twitter({
 tw.stream('statuses/sample', function(stream) {
     stream.on('data', function (data) {
 	io.sockets.emit('message', {
-	    'text': data
+	    'text': data.text ,
+	    'name': data.user.name ,
+	    'screen_name': data.user.screen_name,
+	    'retweet_count': data.retweet_count,
+	    'favorite_count': data.favorite_count
 	});
+	console.log(data.user.name);
     });
 });
