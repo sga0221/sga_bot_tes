@@ -1,7 +1,7 @@
 var express = require('express')
-, app = express()
-, server = require('http').createServer(app)
-, io = require('socket.io').listen(server);
+var app = express();
+var server = require('http').Server(app);
+var io = require('socket.io')(server);
 
 //port: Heroku || AppFog || 3000
 var port = process.env.PORT || process.env.VMC_APP_PORT || 3000;
@@ -19,15 +19,32 @@ var tw = new twitter({
     access_token_secret: auth.access_token_secret()
 });
 
-tw.stream('statuses/sample', function(stream) {
-    stream.on('data', function (data) {
-	io.sockets.emit('message', {
-	    'text': data.text ,
-	    'name': data.user.name ,
-	    'screen_name': data.user.screen_name,
-	    'retweet_count': data.retweet_count,
-	    'favorite_count': data.favorite_count
+io.on('connection' , function(socket){
+    //接続の開始
+    console.log('connection start');
+
+    //stream apiからついっとを取得
+    tw.stream('statuses/sample', function(stream) {
+	stream.on('data', function (data) {
+	    io.sockets.emit('message', {
+		'text': data.text ,
+		'name': data.user.name ,
+		'screen_name': data.user.screen_name,
+		'retweet_count': data.retweet_count,
+		'favorite_count': data.favorite_count
+	    });
+	    
 	});
-	console.log(data.user.name);
     });
+
+    //ついっと内容をconsoleへ出力
+    //socket.on('chat message', function(msg){
+    //console.log('message: ' + msg);
+    //});
+    
+    //接続の終了
+    socket.on('disconnect', function(){
+	console.log('connection close');
+    });
+
 });
